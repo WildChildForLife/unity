@@ -1,0 +1,26 @@
+extends default
+
+
+
+block content
+    - var container = (comments.length !== 0) ? 'container-fluid' : 'container';
+    div(class=container)
+        h2 #{title}
+        if comments.length !== 0
+            table.table.table-dark
+                thead
+                    tr
+                        each header in ['ID', 'Created At', 'Feedback', 'Player ID', 'Session ID']
+                            th #{header}
+                tbody
+                    each comment in comments
+                        tr
+                            td #{comment.id}
+                            td #{comment.createdAt}
+                            td #{comment.feedback}
+                            td
+                                a(href="/players/" + comment.playerId) #{comment.playerId}
+                            td
+                                a(href="/sessions/" + comment.sessionId) #{comment.sessionId}
+        else
+            p Theres no comment yet, please <a href="/comments/create">create a comment</a> before you can list them.

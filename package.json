@@ -1,0 +1,16 @@
+{
+  "name": "unity",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "./setup.sh",
+    "start": "./start.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Youssef El Gharbaoui",
+  "license": "ISC",
+  "dependencies": {
+    "unity-test-front-end-server": "file:middleware-ui"
+  }
+}
