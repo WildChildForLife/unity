@@ -4,7 +4,7 @@ const context_1 = require("@loopback/context");
 var TokenServiceConstants;
 (function (TokenServiceConstants) {
     TokenServiceConstants.TOKEN_SECRET_VALUE = 'myjwts3cr3t';
-    TokenServiceConstants.TOKEN_EXPIRES_IN_VALUE = '8000';
+    TokenServiceConstants.TOKEN_EXPIRES_IN_VALUE = '1800';
 })(TokenServiceConstants = exports.TokenServiceConstants || (exports.TokenServiceConstants = {}));
 var TokenServiceBindings;
 (function (TokenServiceBindings) {
