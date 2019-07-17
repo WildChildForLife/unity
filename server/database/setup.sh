@@ -51,16 +51,21 @@ if [[ "$CONTAINER_STATUS" == *"Error"* ]]; then
     exit 1
 fi
 
-sleep 10
+docker cp ./database/mysql-credentials.cnf $MYSQL_CONTAINER:/home/
+
+while ! docker exec mysql_c mysql --user='root' --password='pass' -e "SELECT 1" >/dev/null 2>&1; do
+    sleep 1
+done
 printf "\n${CYAN}Container is up and running.${PLAIN}\n"
+
 
 ## create the database
 printf "\n${RED}>> Creating the database${PLAIN} ${GREEN}...${PLAIN}"
 
-SQL_REQUEST="mysql -u$USER -p$PASSWORD -e 'DROP DATABASE IF EXISTS $DATABASE'"
+SQL_REQUEST="mysql --defaults-extra-file=/home/mysql-credentials.cnf -e 'DROP DATABASE IF EXISTS $DATABASE'"
 docker exec -it $MYSQL_CONTAINER /bin/sh -c "$SQL_REQUEST" > /dev/null 2>&1
 
-SQL_REQUEST="mysql -u$USER -p$PASSWORD -e 'CREATE DATABASE $DATABASE'"
+SQL_REQUEST="mysql --defaults-extra-file=/home/mysql-credentials.cnf -e 'CREATE DATABASE $DATABASE'"
 docker exec -it $MYSQL_CONTAINER /bin/sh -c "$SQL_REQUEST" > /dev/null 2>&1
 
 DATABASE_CREATED=$?
@@ -78,7 +83,7 @@ printf "\n${CYAN}Successfully created the tables.${PLAIN}\n"
 ## create the default User
 printf "\n${RED}>> Creating the user${PLAIN} ${GREEN}...${PLAIN}"
 
-SQL_REQUEST="mysql -u$USER -p$PASSWORD -e 'USE $DATABASE; INSERT INTO User VALUES(\"John Riccitiello\", \"$USER_LOGIN\", \"$USER_PASSWORD\", \"John\", \"Riccitiello\");'"
+SQL_REQUEST="mysql --defaults-extra-file=/home/mysql-credentials.cnf -e 'USE $DATABASE; INSERT INTO User VALUES(\"John Riccitiello\", \"$USER_LOGIN\", \"$USER_PASSWORD\", \"John\", \"Riccitiello\");'"
 docker exec -it $MYSQL_CONTAINER /bin/sh -c "$SQL_REQUEST"
 USER_CREATED=$?
 if [ "$USER_CREATED" -ne 0 ]; then
