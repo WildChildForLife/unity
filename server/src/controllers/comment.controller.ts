@@ -170,7 +170,7 @@ export class CommentController {
 
   async validateComment(comment: string) {
     if (comment.length === 0) {
-      throw await new HttpErrors.UnprocessableEntity('Feedback can\'t be null.');
+      throw new HttpErrors.UnprocessableEntity('Feedback can\'t be null.');
     }
   }
 }

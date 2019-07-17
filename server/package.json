@@ -67,7 +67,7 @@
   "devDependencies": {
     "@loopback/build": "^1.5.3",
     "@loopback/testlab": "^1.2.8",
-    "@loopback/tslint-config": "^2.0.4",
+    "@loopback/tslint-config": "^2.1.0",
     "@types/node": "^10.11.2",
     "tslint": "^5.15.0",
     "typescript": "^3.4.3"

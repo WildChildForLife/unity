@@ -21,20 +21,20 @@ async function validateEmail(email) {
 exports.validateEmail = validateEmail;
 async function validatePlayer(playerId, playerRepository) {
     await playerRepository.findById(playerId).catch(async () => {
-        throw await new rest_1.HttpErrors.NotFound('The player ID ' + playerId + ' doesn\'t exist.');
+        throw new rest_1.HttpErrors.NotFound('The player ID ' + playerId + ' doesn\'t exist.');
     });
 }
 exports.validatePlayer = validatePlayer;
 async function validateSession(sessionId, sessionRepository) {
     await sessionRepository.findById(sessionId).catch(async () => {
-        throw await new rest_1.HttpErrors.NotFound('The session ID ' + sessionId + ' doesn\'t exist.');
+        throw new rest_1.HttpErrors.NotFound('The session ID ' + sessionId + ' doesn\'t exist.');
     });
 }
 exports.validateSession = validateSession;
 async function validatePlayersRatingSameSession(sessionId, playerId, ratingRepository) {
     await ratingRepository.findOne({ where: { sessionId: sessionId, playerId: playerId }, limit: 1 }).then(async (res) => {
         if (res !== null) {
-            throw await new rest_1.HttpErrors.UnprocessableEntity('The session ID ' + sessionId + ' has already been rated by player ID ' + playerId);
+            throw new rest_1.HttpErrors.UnprocessableEntity('The session ID ' + sessionId + ' has already been rated by player ID ' + playerId);
         }
     });
 }

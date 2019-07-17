@@ -170,7 +170,7 @@ export class RatingController {
 
   async validateScore(score: number) {
     if (score < 1 || score > 5) {
-      throw await new HttpErrors.UnprocessableEntity('Rating session should be between 1 and 5.');
+      throw new HttpErrors.UnprocessableEntity('Rating session should be between 1 and 5.');
     }
   }
 

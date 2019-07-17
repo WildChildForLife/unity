@@ -59,7 +59,7 @@ let CommentController = class CommentController {
     }
     async validateComment(comment) {
         if (comment.length === 0) {
-            throw await new rest_1.HttpErrors.UnprocessableEntity('Feedback can\'t be null.');
+            throw new rest_1.HttpErrors.UnprocessableEntity('Feedback can\'t be null.');
         }
     }
 };
