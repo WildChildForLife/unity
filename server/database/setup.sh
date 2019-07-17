@@ -77,7 +77,7 @@ printf "\n${CYAN}Successfully created the database.${PLAIN}\n"
 
 ## creating the required tables (Schema)
 printf "\n${RED}>> Creating the tables${PLAIN} ${GREEN}...${PLAIN}"
-npm run migrate -- --rebuild > /dev/null 2>&1
+npm run migrate -- --rebuild
 printf "\n${CYAN}Successfully created the tables.${PLAIN}\n"
 
 ## create the default User

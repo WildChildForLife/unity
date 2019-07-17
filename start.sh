@@ -24,7 +24,7 @@ if lsof -Pi :3000 -sTCP:LISTEN -t >/dev/null ; then
 fi
 
 printf "\n${GREEN}>> Starting the requested Servers${PLAIN} ${RED}...${PLAIN}\n"
-(npm start --prefix ./server/ > ./logs/server.log & npm start --prefix ./middleware-ui/ > ./logs/middleware-ui.log) & sleep 5
+(npm start --prefix ./server/ > ./logs/server.log 2>&1 & npm start --prefix ./middleware-ui/ > ./logs/middleware-ui.log 2>&1) & sleep 5
 RESULT=$?
 if [ $RESULT -eq 0 ]; then
     printf "\n${GREEN}>> Servers started succefully !!${PLAIN} ${RED}...${PLAIN}\n"

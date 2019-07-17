@@ -9,7 +9,7 @@ module.exports = (app, apiProtocole, apiBaseUrl, apiPort, apiUrl, datesFormat, p
         fetch(apiUrl + '/sessions').then((apiResponse) => apiResponse.json()).then((apiResponse) => {
             // Transform Dates to readable dates
             apiResponse.map((session) => {
-                Object.keys(session).map((key, index) => {
+                Object.keys(session).map(() => {
                     session['createdAt'] = moment(session['createdAt']).format(datesFormat);
                 });
             });
@@ -62,7 +62,7 @@ module.exports = (app, apiProtocole, apiBaseUrl, apiPort, apiUrl, datesFormat, p
             fetch(apiUrl + '/comments?filter[where][sessionId]=' + apiResponseSession.id).then((apiResponseComments) => apiResponseComments.json()).then((apiResponseComments) => {
                 // Transform Dates to readable dates
                 apiResponseComments.map((comment) => {
-                    Object.keys(comment).map((key, index) => {
+                    Object.keys(comment).map(() => {
                         comment['createdAt'] = moment(comment['createdAt']).format(datesFormat);
                     });
                 });

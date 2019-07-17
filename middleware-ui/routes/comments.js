@@ -9,7 +9,7 @@ module.exports = (app, apiProtocole, apiBaseUrl, apiPort, apiUrl, datesFormat, p
         fetch(apiUrl + '/comments').then((apiResponse) => apiResponse.json()).then((apiResponse) => {
             // Transform Dates to readable dates
             apiResponse.map((comment) => {
-                Object.keys(comment).map((key, index) => {
+                Object.keys(comment).map(() => {
                     comment['createdAt'] = moment(comment['createdAt']).format(datesFormat);
                 });
             });

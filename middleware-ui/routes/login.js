@@ -1,7 +1,5 @@
 // Fetch (for the API)
 const fetch = require('node-fetch');
-// Dates Handle
-const moment = require('moment');
 // JWT Token Decode
 const jwtDecode = require('jwt-decode');
 
