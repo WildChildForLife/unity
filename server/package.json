@@ -62,7 +62,7 @@
     "isemail": "^3.2.0",
     "jsonwebtoken": "^8.5.1",
     "loopback-connector-mysql": "^5.4.1",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@loopback/build": "^1.5.3",
